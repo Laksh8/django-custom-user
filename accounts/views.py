@@ -14,6 +14,8 @@ from django.db.models import Q
 from django.core.mail import send_mail
 from .encrypt import encrypt_message,decrypt_message
 from django.contrib.auth.hashers import check_password,make_password
+from .decorator import AuthenticationCheck
+
 
 def Authentication(request):
     if request.user.is_authenticated and "Bearer "+request.user.token == request.headers.get("Authorization"):
@@ -148,3 +150,13 @@ class ResetPasswordView(APIView):
                 return Response(["Password Changed"],status=status.HTTP_200_OK)
             return Response(["Link is Not correct"],status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+
+class GeneralAuthView(APIView):
+
+    authentication_classes = [JWTAuthentication, SessionAuthentication]
+
+    @AuthenticationCheck
+    def get(self,request):
+        return Response({"message":"Successfully Reached"},status=status.HTTP_200_OK)
+    

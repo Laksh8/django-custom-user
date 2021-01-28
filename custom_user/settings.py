@@ -90,15 +90,20 @@ WSGI_APPLICATION = 'custom_user.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'custom_user',
-        'USER': 'admin',
-        'PASSWORD': 'Admin@123',
-        'HOST': 'localhost',
-        'PORT': ''
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
+    
 }
 
+# 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'custom_user',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'Admin@123',
+    #     'HOST': 'localhost',
+    #     'PORT': ''
+    # }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
